@@ -8,9 +8,9 @@ mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 class contestant {
 public:
   int id, rating;
-  string name;
-  contestant(): id(0), rating(0), name("") {}
-  contestant(int id, int rating, string name): id(id), rating(rating), name(name) {}
+  string name, username;
+  contestant(): id(0), rating(0), name(""), username("") {}
+  contestant(int id, int rating, string name, string username): id(id), rating(rating), name(name), username(username) {}
 };
 
 class TeamFormation {
@@ -81,7 +81,7 @@ public:
     }
 
     assert(optimal != -1 && "no valid solution!");
-    cout << "optimal threshold: " << optimal + RANDOMNESS << "\n\n";
+    cout << "threshold: " << optimal + RANDOMNESS << "\n\n";
 
     vector <contestant> output = possibleTeams(optimal + RANDOMNESS);
 
@@ -89,8 +89,10 @@ public:
     for (int i = 0; i < (int)output.size(); i+=2) {
       if (i > 0) cout << "\n";
       cout << "Team #" << ++id << ":" << "\n";
-      cout << output[i].id << " " << output[i].rating << " " << output[i].name << "\n";
-      cout << output[i + 1].id << " " << output[i + 1].rating << " " << output[i + 1].name << "\n";
+      cout << output[i].name << " and " << output[i+1].name << "\n";
+      cout << "Team Details\n";
+      cout <<  "1. Rating: " << output[i].rating << ", Username: " << output[i].username << "\n";
+      cout <<  "2. Rating: " << output[i + 1].rating << ", Username: " << output[i + 1].username << "\n";
     }
   }
 };
@@ -100,16 +102,16 @@ int main() {
   ios_base::sync_with_stdio(false); cin.tie(0);
 
   vector <contestant> v = {{
-    contestant(1, 1659, "shakib59"),
-    contestant(2, 1737, "sakib_alamin"),
-    contestant(3, 2112, "Shaad7"),
-    contestant(4, 1913, "Tasdid"),
-    contestant(5, 1545, "nur_riyad"),
-    contestant(6, 1853, "HeWhoMustNotBeNamed"),
-    contestant(7, 1702, "masudur_rahman"),
-    contestant(8, 1685, "bhowmik"),
-    contestant(9, 1754, "LazyMediocre"),
-    contestant(10, 1563, "segmented"),
+    contestant(1, 1659,"Junayed", "shakib59"),
+    contestant(2, 1737,"Sakib Alamin", "sakib_alamin"),
+    contestant(3, 2112,"Shaad", "Shaad7"),
+    contestant(4, 1913, "Tasdid", "Tasdid"),
+    contestant(5, 1545, "Riyad", "nur_riyad"),
+    contestant(6, 1853, "Alif", "spectro30"),
+    contestant(7, 1702, "Masud", "masudur_rahman"),
+    contestant(8, 1685, "Pulak", "bhowmik"),
+    contestant(9, 1754, "Kamol", "LazyMediocre"),
+    contestant(10, 1563, "Raka", "segmented"),
   }};
 
 
