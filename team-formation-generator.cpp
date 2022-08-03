@@ -68,13 +68,11 @@ public:
   }
 
   void FormTeam() {
-    vector <contestant> output;
     int lo = 2 * MIN_RATING, hi = 2 * MAX_RATING, optimal = -1;
     while (lo <= hi) {
       int mid = (lo + hi) >> 1;
       vector <contestant> result = possible(mid);
       if ((int)result.size() > 0) {
-        output = result;
         optimal = mid;
         hi = mid - 1;
       } else {
@@ -85,7 +83,7 @@ public:
     assert(optimal != -1 && "no valid solution!");
     cout << "optimal threshold: " << optimal + RANDOMNESS << "\n\n";
 
-    output = possible(optimal + RANDOMNESS);
+    vector <contestant> output = possible(optimal + RANDOMNESS);
 
     int id = 0;
     for (int i = 0; i < (int)output.size(); i+=2) {
@@ -113,6 +111,7 @@ int main() {
     contestant(9, 1754, "LazyMediocre"),
     contestant(10, 1563, "segmented"),
   }};
+
 
   TeamFormation *formation = new TeamFormation(v);
   formation -> FormTeam();
