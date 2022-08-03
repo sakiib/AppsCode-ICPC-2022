@@ -56,7 +56,7 @@ public:
     return true;
   }
 
-  vector <contestant> possible(int threshold) {
+  vector <contestant> possibleTeams(int threshold) {
     for (int iter = 1; iter <= 100000; iter++) {
       random_shuffle(v.begin(), v.end());
       if (isValid(threshold)) {
@@ -71,7 +71,7 @@ public:
     int lo = 2 * MIN_RATING, hi = 2 * MAX_RATING, optimal = -1;
     while (lo <= hi) {
       int mid = (lo + hi) >> 1;
-      vector <contestant> result = possible(mid);
+      vector <contestant> result = possibleTeams(mid);
       if ((int)result.size() > 0) {
         optimal = mid;
         hi = mid - 1;
@@ -83,7 +83,7 @@ public:
     assert(optimal != -1 && "no valid solution!");
     cout << "optimal threshold: " << optimal + RANDOMNESS << "\n\n";
 
-    vector <contestant> output = possible(optimal + RANDOMNESS);
+    vector <contestant> output = possibleTeams(optimal + RANDOMNESS);
 
     int id = 0;
     for (int i = 0; i < (int)output.size(); i+=2) {
