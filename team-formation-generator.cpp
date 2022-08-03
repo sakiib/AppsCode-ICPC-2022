@@ -114,7 +114,6 @@ int main() {
     contestant(10, 1563, "segmented"),
   }};
 
-
   TeamFormation *formation = new TeamFormation(v);
   formation -> FormTeam();
   return 0;
