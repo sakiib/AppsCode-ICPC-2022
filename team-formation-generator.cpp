@@ -112,6 +112,7 @@ int main() {
     contestant(8, 1685, "Pulak", "bhowmik"),
     contestant(9, 1754, "Kamol", "LazyMediocre"),
     contestant(10, 1563, "Raka", "segmented"),
+    contestant(11, 1494, "Sayem", "factoradic"),
   }};
 
 
