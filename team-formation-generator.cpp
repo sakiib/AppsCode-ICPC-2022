@@ -36,7 +36,7 @@ public:
   bool runValidator() {
     set <int> ids;
     for (auto c: v) {
-      if (!(c.id > 0 && c.rating >= MIN_RATING && c.rating <= MAX_RATING && (int)c.name.size() > 0)) {
+      if (!(c.id > 0 && c.rating >= MIN_RATING && c.rating <= MAX_RATING && (int)c.name.size() > 0 && (int)c.username.size() > 0)) {
         return false;
       }
 
