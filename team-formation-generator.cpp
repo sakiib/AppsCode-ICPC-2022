@@ -18,14 +18,10 @@ public:
   contestant member1;
   contestant member2;
   int teamRating;
-  Team(contestant member1, contestant member2) {
-    this->member1 = member1;
-    this->member2 = member2;
-    this->teamRating = this->member1.rating + this->member2.rating;
-  }
+  Team(contestant mem1, contestant mem2): member1(mem1), member2(mem2), teamRating(mem1.rating + mem2.rating) {}
 
-  bool operator < (const Team &p) const {
-    return teamRating < p.teamRating;
+  bool operator < (const Team &other) const {
+    return teamRating < other.teamRating;
   }
 };
 
