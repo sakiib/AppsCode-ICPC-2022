@@ -107,7 +107,7 @@ int main() {
     contestant(3, 2112,"Shaad", "Shaad7"),
     contestant(4, 1913, "Tasdid", "Tasdid"),
     contestant(5, 1545, "Riyad", "nur_riyad"),
-    contestant(6, 1853, "Alif", "spectro30"),
+    contestant(6, 1853, "Alif", "_HeWhoMustNotBeNamed_"),
     contestant(7, 1702, "Masud", "masudur_rahman"),
     contestant(8, 1685, "Pulak", "bhowmik"),
     contestant(9, 1754, "Kamol", "LazyMediocre"),
