@@ -13,6 +13,22 @@ public:
   contestant(int id, int rating, string name, string username): id(id), rating(rating), name(name), username(username) {}
 };
 
+class Team {
+public:
+  contestant member1;
+  contestant member2;
+  int teamRating;
+  Team(contestant member1, contestant member2) {
+    this->member1 = member1;
+    this->member2 = member2;
+    this->teamRating = this->member1.rating + this->member2.rating;
+  }
+
+  bool operator < (const Team &p) const {
+    return teamRating < p.teamRating;
+  }
+};
+
 class TeamFormation {
 public:
   const int RANDOMNESS = 200;
@@ -84,15 +100,22 @@ public:
     cout << "threshold: " << optimal + RANDOMNESS << "\n\n";
 
     vector <contestant> output = possibleTeams(optimal + RANDOMNESS);
+    vector <Team> teams;
 
-    int id = 0;
     for (int i = 0; i < (int)output.size(); i+=2) {
+        Team *tmp = new Team(output[i], output[i + 1]);
+      teams.push_back(*tmp);
+    }
+
+    sort(teams.begin(), teams.end());
+
+    for (int i = 0; i < (int)teams.size(); i++) {
       if (i > 0) cout << "\n";
-      cout << "Team #" << ++id << ":" << "\n";
-      cout << output[i].name << " and " << output[i+1].name << "\n";
+      cout << "Team #" << i + 1 << ":" << "\n";
+      cout << teams[i].member1.name << " and " << teams[i].member2.name << ": Team Rating (" << teams[i].teamRating << ") " << "\n";
       cout << "Team Details\n";
-      cout <<  "1. Rating: " << output[i].rating << ", Username: " << output[i].username << "\n";
-      cout <<  "2. Rating: " << output[i + 1].rating << ", Username: " << output[i + 1].username << "\n";
+      cout <<  "1. Rating: " << teams[i].member1.rating << ", Username: " << teams[i].member1.username << "\n";
+      cout <<  "2. Rating: " << teams[i].member2.rating << ", Username: " << teams[i].member2.username << "\n";
     }
   }
 };
@@ -115,6 +138,9 @@ int main() {
     contestant(11, 1494, "Sayem", "factoradic"),
     contestant(12, 2012, "Rakibul", "Wolve_rine"),
     contestant(13, 1949, "Rasel", "Superm4n"),
+    contestant(14, 1602, "Sakib", "s4k1b"),
+    contestant(15, 1610, "Piyush", "piyush1146115"),
+    contestant(16, 1536, "Mehedi", "heheh"),
   }};
 
 
