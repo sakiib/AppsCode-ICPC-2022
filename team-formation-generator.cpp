@@ -5,20 +5,20 @@ mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 #define rnd(a, b) ((((rand() << 15) ^ rand()) % ((b) - (a) + 1)) + (a))
 #define ran(a, b) rng() % ((b) - (a) + 1) + (a)
 
-class contestant {
+class Contestant {
 public:
   int id, rating;
   string name, username;
-  contestant(): id(0), rating(0), name(""), username("") {}
-  contestant(int id, int rating, string name, string username): id(id), rating(rating), name(name), username(username) {}
+  Contestant(): id(0), rating(0), name(""), username("") {}
+  Contestant(int id, int rating, string name, string username): id(id), rating(rating), name(name), username(username) {}
 };
 
 class Team {
 public:
-  contestant member1;
-  contestant member2;
+  Contestant member1;
+  Contestant member2;
   int teamRating;
-  Team(contestant mem1, contestant mem2): member1(mem1), member2(mem2), teamRating(mem1.rating + mem2.rating) {}
+  Team(Contestant mem1, Contestant mem2): member1(mem1), member2(mem2), teamRating(mem1.rating + mem2.rating) {}
 
   bool operator < (const Team &other) const {
     return teamRating < other.teamRating;
@@ -31,9 +31,9 @@ public:
   const int MIN_RATING = 800;
   const int MAX_RATING = 2600;
 
-  vector <contestant> v;
+  vector <Contestant> v;
 
-  TeamFormation(vector <contestant> &cont) {
+  TeamFormation(vector <Contestant> &cont) {
     for (auto c: cont) {
       v.push_back(c);
     }
@@ -68,7 +68,7 @@ public:
     return true;
   }
 
-  vector <contestant> possibleTeams(int threshold) {
+  vector <Contestant> possibleTeams(int threshold) {
     for (int iter = 1; iter <= 100000; iter++) {
       random_shuffle(v.begin(), v.end());
       if (isValid(threshold)) {
@@ -83,7 +83,7 @@ public:
     int lo = 2 * MIN_RATING, hi = 2 * MAX_RATING, optimal = -1;
     while (lo <= hi) {
       int mid = (lo + hi) >> 1;
-      vector <contestant> result = possibleTeams(mid);
+      vector <Contestant> result = possibleTeams(mid);
       if ((int)result.size() > 0) {
         optimal = mid;
         hi = mid - 1;
@@ -95,7 +95,7 @@ public:
     assert(optimal != -1 && "no valid solution!");
     cout << "threshold: " << optimal + RANDOMNESS << "\n\n";
 
-    vector <contestant> output = possibleTeams(optimal + RANDOMNESS);
+    vector <Contestant> output = possibleTeams(optimal + RANDOMNESS);
     vector <Team> teams;
 
     for (int i = 0; i < (int)output.size(); i+=2) {
@@ -120,23 +120,23 @@ int main() {
   srand(time(0));
   ios_base::sync_with_stdio(false); cin.tie(0);
 
-  vector <contestant> v = {{
-    contestant(1, 1659,"Junayed", "shakib59"),
-    contestant(2, 1737,"Sakib Alamin", "sakib_alamin"),
-    contestant(3, 2112,"Shaad", "Shaad7"),
-    contestant(4, 1913, "Tasdid", "Tasdid"),
-    contestant(5, 1545, "Riyad", "nur_riyad"),
-    contestant(6, 1853, "Alif", "_HeWhoMustNotBeNamed_"),
-    contestant(7, 1702, "Masud", "masudur_rahman"),
-    contestant(8, 1685, "Pulak", "bhowmik"),
-    contestant(9, 1754, "Kamol", "LazyMediocre"),
-    contestant(10, 1563, "Raka", "segmented"),
-    contestant(11, 1494, "Sayem", "factoradic"),
-    contestant(12, 2012, "Rakibul", "Wolve_rine"),
-    contestant(13, 1949, "Rasel", "Superm4n"),
-    contestant(14, 1602, "Sakib", "s4k1b"),
-    contestant(15, 1610, "Piyush", "piyush1146115"),
-    contestant(16, 1536, "Mehedi", "heheh"),
+  vector <Contestant> v = {{
+    Contestant(1, 1659,"Junayed", "shakib59"),
+    Contestant(2, 1737,"Sakib Alamin", "sakib_alamin"),
+    Contestant(3, 2112,"Shaad", "Shaad7"),
+    Contestant(4, 1913, "Tasdid", "Tasdid"),
+    Contestant(5, 1545, "Riyad", "nur_riyad"),
+    Contestant(6, 1853, "Alif", "_HeWhoMustNotBeNamed_"),
+    Contestant(7, 1702, "Masud", "masudur_rahman"),
+    Contestant(8, 1685, "Pulak", "bhowmik"),
+    Contestant(9, 1754, "Kamol", "LazyMediocre"),
+    Contestant(10, 1563, "Raka", "segmented"),
+    Contestant(11, 1494, "Sayem", "factoradic"),
+    Contestant(12, 2012, "Rakibul", "Wolve_rine"),
+    Contestant(13, 1949, "Rasel", "Superm4n"),
+    Contestant(14, 1602, "Sakib", "s4k1b"),
+    Contestant(15, 1610, "Piyush", "piyush1146115"),
+    Contestant(16, 1536, "Mehedi", "heheh"),
   }};
 
 
