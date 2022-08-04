@@ -12,3 +12,5 @@ run: build
 clean:
 	@echo removing binaries
 	@ rm -rf *.o
+
+all: build run clean
