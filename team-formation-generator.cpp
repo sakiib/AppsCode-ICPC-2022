@@ -114,7 +114,7 @@ int main() {
     contestant(10, 1563, "Raka", "segmented"),
     contestant(11, 1494, "Sayem", "factoradic"),
     contestant(12, 2012, "Rakibul Hossain", "Wolve_rine"),
-    contestant(12, 1702, "MASUDUR RAHMAN", "MASUDUR_RAHMAN"),
+    contestant(13, 1702, "MASUDUR RAHMAN", "MASUDUR_RAHMAN"),
   }};
 
 
