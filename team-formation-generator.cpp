@@ -137,6 +137,8 @@ int main() {
     Contestant(14, 1602, "Sakib", "s4k1b"),
     Contestant(15, 1610, "Piyush", "piyush1146115"),
     Contestant(16, 1536, "Mehedi", "heheh"),
+    Contestant(17, 1705, "Emruz", "Emruz_Hossain"),
+    Contestant(18, 1378, "Dipto", "Drac_007"),
   }};
 
 
