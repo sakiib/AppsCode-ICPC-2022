@@ -119,7 +119,7 @@ public:
   		}
   	}
  
-  	for (int i = 0; i < (int)teams.size(); i++) {
+    for (int i = 0; i < (int)teams.size(); i++) {
       if (i > 0) cout << "\n";
       cout << "Team #" << i + 1 << ":" << "\n";
       cout << teams[i].member1.name << " and " << teams[i].member2.name << ": Team Rating (" << teams[i].teamRating << ") " << "\n";
