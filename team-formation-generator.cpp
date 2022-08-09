@@ -99,7 +99,7 @@ public:
 
     for (int i = 0; i < (int)output.size(); i+=2) {
         Team *tmp = new Team(output[i], output[i + 1]);
-      teams.push_back(*tmp);
+        teams.push_back(*tmp);
     }
 
     sort(teams.begin(), teams.end());
@@ -111,14 +111,14 @@ public:
   	vector <Team> teams;
   	int diff = INT_MAX;
   	for (int iter = 1; iter <= iteration; iter++) {
-  		vector <Team> t = FormTeam();
+      vector <Team> t = FormTeam();
   		int sz = t.size();
   		if (t[sz - 1].teamRating - t[0].teamRating < diff) {
-  			diff = t[sz - 1].teamRating - t[0].teamRating;
-  			teams = t;
+        diff = t[sz - 1].teamRating - t[0].teamRating;
+        teams = t;
   		}
   	}
- 
+
     for (int i = 0; i < (int)teams.size(); i++) {
       if (i > 0) cout << "\n";
       cout << "Team #" << i + 1 << ":" << "\n";
@@ -160,3 +160,4 @@ int main() {
   formation -> FormTeam(100);
   return 0;
 }
+
