@@ -2,7 +2,7 @@
 using namespace std;
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-#define rnd(a, b) ((((rand() << 15) ^ rand()) % ((b) - (a) + 1)) + (a))
+#define rnd(a, b)((((rand() << 15) ^ rand()) % ((b) - (a) + 1)) + (a))
 #define ran(a, b) rng() % ((b) - (a) + 1) + (a)
 
 class Contestant {
@@ -20,7 +20,7 @@ public:
   int teamRating;
   Team(Contestant mem1, Contestant mem2): member1(mem1), member2(mem2), teamRating(mem1.rating + mem2.rating) {}
 
-  bool operator < (const Team &other) const {
+  bool operator < (const Team & other) const {
     return teamRating < other.teamRating;
   }
 };
@@ -48,7 +48,7 @@ public:
   bool runValidator() {
     set <int> ids;
     for (auto c: v) {
-      if (!(c.id > 0 && c.rating >= MIN_RATING && c.rating <= MAX_RATING && (int)c.name.size() > 0 && (int)c.username.size() > 0)) {
+      if (!(c.id > 0 && c.rating >= MIN_RATING && c.rating <= MAX_RATING && (int) c.name.size() > 0 && (int) c.username.size() > 0)) {
         return false;
       }
 
@@ -59,7 +59,7 @@ public:
   }
 
   bool isValid(int threshold) {
-    for (int i = 0; i < (int)v.size(); i += 2) {
+    for (int i = 0; i < (int) v.size(); i += 2) {
       if (v[i].rating + v[i + 1].rating > threshold) {
         return false;
       }
@@ -84,7 +84,7 @@ public:
     while (lo <= hi) {
       int mid = (lo + hi) >> 1;
       vector <Contestant> result = possibleTeams(mid);
-      if ((int)result.size() > 0) {
+      if ((int) result.size() > 0) {
         optimal = mid;
         hi = mid - 1;
       } else {
@@ -97,9 +97,9 @@ public:
     vector <Contestant> output = possibleTeams(optimal + RANDOMNESS);
     vector <Team> teams;
 
-    for (int i = 0; i < (int)output.size(); i+=2) {
-        Team *tmp = new Team(output[i], output[i + 1]);
-        teams.push_back(*tmp);
+    for (int i = 0; i < (int) output.size(); i += 2) {
+      Team *tmp = new Team(output[i], output[i + 1]);
+      teams.push_back(*tmp);
     }
 
     sort(teams.begin(), teams.end());
@@ -108,24 +108,24 @@ public:
   }
 
   void FormTeam(int iteration) {
-  	vector <Team> teams;
-  	int diff = INT_MAX;
-  	for (int iter = 1; iter <= iteration; iter++) {
+    vector <Team> teams;
+    int diff = INT_MAX;
+    for (int iter = 1; iter <= iteration; iter++) {
       vector <Team> t = FormTeam();
       int sz = t.size();
       if (t[sz - 1].teamRating - t[0].teamRating < diff) {
         diff = t[sz - 1].teamRating - t[0].teamRating;
         teams = t;
-  		}
-  	}
+      }
+    }
 
-    for (int i = 0; i < (int)teams.size(); i++) {
+    for (int i = 0; i < (int) teams.size(); i++) {
       if (i > 0) cout << "\n";
       cout << "Team #" << i + 1 << ":" << "\n";
       cout << teams[i].member1.name << " and " << teams[i].member2.name << ": Team Rating (" << teams[i].teamRating << ") " << "\n";
       cout << "Team Details\n";
-      cout <<  "1. Rating: " << teams[i].member1.rating << ", Username: " << teams[i].member1.username << "\n";
-      cout <<  "2. Rating: " << teams[i].member2.rating << ", Username: " << teams[i].member2.username << "\n";
+      cout << "1. Rating: " << teams[i].member1.rating << ", Username: " << teams[i].member1.username << "\n";
+      cout << "2. Rating: " << teams[i].member2.rating << ", Username: " << teams[i].member2.username << "\n";
     }
   }
 };
@@ -135,29 +135,28 @@ int main() {
   ios_base::sync_with_stdio(false); cin.tie(0);
 
   vector <Contestant> v = {{
-    Contestant(1, 1659,"Junayed", "shakib59"),
-    Contestant(2, 1737,"Sakib Alamin", "sakib_alamin"),
-    Contestant(3, 2112,"Shaad", "Shaad7"),
-    Contestant(4, 1913, "Tasdid", "Tasdid"),
-    Contestant(5, 1545, "Riyad", "nur_riyad"),
-    Contestant(6, 1853, "Alif", "_HeWhoMustNotBeNamed_"),
-    Contestant(7, 1702, "Masud", "masudur_rahman"),
-    Contestant(8, 1685, "Pulak", "bhowmik"),
-    Contestant(9, 1754, "Kamol", "LazyMediocre"),
-    Contestant(10, 1563, "Raka", "segmented"),
-    Contestant(11, 1494, "Sayem", "factoradic"),
-    Contestant(12, 2012, "Rakibul", "Wolve_rine"),
-    Contestant(13, 1949, "Rasel", "Superm4n"),
-    Contestant(14, 1602, "Sakib", "s4k1b"),
-    Contestant(15, 1610, "Piyush", "piyush1146115"),
-    Contestant(16, 1536, "Mehedi", "heheh"),
-    Contestant(17, 1705, "Emruz", "Emruz_Hossain"),
-    Contestant(18, 1378, "Dipto", "Drac_007"),
-  }};
+      Contestant(1, 1659, "Junayed", "shakib59"),
+      Contestant(2, 1737, "Sakib Alamin", "sakib_alamin"),
+      Contestant(3, 2112, "Shaad", "Shaad7"),
+      Contestant(4, 1913, "Tasdid", "Tasdid"),
+      Contestant(5, 1545, "Riyad", "nur_riyad"),
+      Contestant(6, 1853, "Alif", "_HeWhoMustNotBeNamed_"),
+      Contestant(7, 1702, "Masud", "masudur_rahman"),
+      Contestant(8, 1685, "Pulak", "bhowmik"),
+      Contestant(9, 1754, "Kamol", "LazyMediocre"),
+      Contestant(10, 1563, "Raka", "segmented"),
+      Contestant(11, 1494, "Sayem", "factoradic"),
+      Contestant(12, 2012, "Rakibul", "Wolve_rine"),
+      Contestant(13, 1949, "Rasel", "Superm4n"),
+      Contestant(14, 1602, "Sakib", "s4k1b"),
+      Contestant(15, 1610, "Piyush", "piyush1146115"),
+      Contestant(16, 1536, "Mehedi", "heheh"),
+      Contestant(17, 1705, "Emruz", "Emruz_Hossain"),
+      Contestant(18, 1378, "Dipto", "Drac_007"),
+    }
+  };
 
-
-  TeamFormation *formation = new TeamFormation(v);
+  TeamFormation * formation = new TeamFormation(v);
   formation -> FormTeam(100);
   return 0;
 }
-
