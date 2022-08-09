@@ -38,7 +38,7 @@ public:
       v.push_back(c);
     }
 
-    for (int iter = 1; iter <= 100000; iter++) {
+    for (int iter = 1; iter <= 100; iter++) {
       random_shuffle(v.begin(), v.end());
     }
 
@@ -69,7 +69,7 @@ public:
   }
 
   vector <Contestant> possibleTeams(int threshold) {
-    for (int iter = 1; iter <= 100000; iter++) {
+    for (int iter = 1; iter <= 10000; iter++) {
       random_shuffle(v.begin(), v.end());
       if (isValid(threshold)) {
         return v;
@@ -79,7 +79,7 @@ public:
     return {};
   }
 
-  void FormTeam() {
+  vector <Team> FormTeam() {
     int lo = 2 * MIN_RATING, hi = 2 * MAX_RATING, optimal = -1;
     while (lo <= hi) {
       int mid = (lo + hi) >> 1;
@@ -93,7 +93,6 @@ public:
     }
 
     assert(optimal != -1 && "no valid solution!");
-    cout << "threshold: " << optimal + RANDOMNESS << "\n\n";
 
     vector <Contestant> output = possibleTeams(optimal + RANDOMNESS);
     vector <Team> teams;
@@ -105,7 +104,22 @@ public:
 
     sort(teams.begin(), teams.end());
 
-    for (int i = 0; i < (int)teams.size(); i++) {
+    return teams;
+  }
+
+  void FormTeam(int iteration) {
+  	vector <Team> teams;
+  	int diff = INT_MAX;
+  	for (int iter = 1; iter <= iteration; iter++) {
+  		vector <Team> t = FormTeam();
+  		int sz = t.size();
+  		if (t[sz - 1].teamRating - t[0].teamRating < diff) {
+  			diff = t[sz - 1].teamRating - t[0].teamRating;
+  			teams = t;
+  		}
+  	}
+ 
+  	for (int i = 0; i < (int)teams.size(); i++) {
       if (i > 0) cout << "\n";
       cout << "Team #" << i + 1 << ":" << "\n";
       cout << teams[i].member1.name << " and " << teams[i].member2.name << ": Team Rating (" << teams[i].teamRating << ") " << "\n";
@@ -143,6 +157,6 @@ int main() {
 
 
   TeamFormation *formation = new TeamFormation(v);
-  formation -> FormTeam();
+  formation -> FormTeam(100);
   return 0;
 }
