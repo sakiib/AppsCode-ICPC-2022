@@ -112,8 +112,8 @@ public:
   	int diff = INT_MAX;
   	for (int iter = 1; iter <= iteration; iter++) {
       vector <Team> t = FormTeam();
-  		int sz = t.size();
-  		if (t[sz - 1].teamRating - t[0].teamRating < diff) {
+      int sz = t.size();
+      if (t[sz - 1].teamRating - t[0].teamRating < diff) {
         diff = t[sz - 1].teamRating - t[0].teamRating;
         teams = t;
   		}
